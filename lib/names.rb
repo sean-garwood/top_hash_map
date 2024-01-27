@@ -6,7 +6,6 @@ class Names
     @len = len
     @min_chars = min_chars
     @names = make_names
-    puts names.length
   end
 
   private

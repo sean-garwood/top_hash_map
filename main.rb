@@ -10,7 +10,7 @@ foo = HashMap.new
 bar = Names.new(2056 - 512)
 bar.names.each { |name| foo.set(name) }
 
-puts foo.values.length.to_f / bar.names.length
-puts foo.load
-
-puts foo
+puts "total names: #{bar.names.length}"
+puts "values in hmap: #{foo.values.length}"
+puts "hmap load: #{foo.load}"
+puts "resized #{foo.resizes} times"

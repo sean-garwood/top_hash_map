@@ -31,7 +31,6 @@ module EditMap
 
   def rehash!
     @resizes += 1
-    old_values = values
     values.each { |v| set(v, true) }
   end
 
