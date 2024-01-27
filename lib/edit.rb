@@ -3,8 +3,8 @@
 # Edit values in the hash map's collection
 module EditMap
   include MapInfo
-  def set(value)
-    @load += 1 unless @coll[hash(value)] == value
+  def set(value, rehash = nil)
+    @load += 1 unless @coll[hash(value)] == value || rehash
     @coll[hash(value)] = value
     resize
     value
@@ -30,8 +30,9 @@ module EditMap
   private
 
   def rehash!
-    values.each { |v| set(v) }
-    @load = values.length
+    @resizes += 1
+    old_values = values
+    values.each { |v| set(v, true) }
   end
 
   def add_slots
@@ -41,14 +42,7 @@ module EditMap
     rehash!
   end
 
-  def trim_slots
-    @capacity /= 2
-    rehash!
-  end
-
   def resize
-    return unless emptyish? || fullish?
-
-    emptyish? && trim_slots || fullish? && add_slots
+    fullish? && add_slots
   end
 end
