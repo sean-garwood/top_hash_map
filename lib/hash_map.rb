@@ -4,13 +4,14 @@
 class HashMap
   include EditMap
 
-  attr_accessor :coll
+  attr_accessor :coll, :resizes
   attr_reader :capacity, :load
 
   def initialize(capacity = INIT_CAPACITY, coll = Array.new(capacity))
     @capacity = capacity
     @coll = coll
-    @load = INIT_MEMBERS
+    @load = 0
+    @resizes = 0
   end
 
   def to_s
