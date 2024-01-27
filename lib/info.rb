@@ -14,12 +14,12 @@ module MapInfo
 
   def keys
     all_keys = []
-    coll.each_with_index { |v, k| all_keys << k unless v.nil? }
+    coll.each_index { |k| all_keys << k unless @coll[k].nil? }
     all_keys
   end
 
   def values
-    coll.select { |v| v }
+    keys.reduce([]) { |vals, key| vals << @coll[key] }
   end
 
   private

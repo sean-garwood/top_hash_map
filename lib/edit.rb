@@ -4,12 +4,10 @@
 module EditMap
   include MapInfo
   def set(value)
-    key = hash(value)
-    if empty_slot?(key)
-      @load += 1
-      resize
-    end
-    @coll[key] = value
+    @load += 1 unless @coll[hash(value)] == value
+    @coll[hash(value)] = value
+    resize
+    value
   end
 
   def remove(value)
@@ -25,18 +23,15 @@ module EditMap
 
   def clear!
     @capacity = INIT_CAPACITY
-    @coll = coll.each_index { |i| coll[i] = nil }
+    @coll = Array.new(capacity)
+    @load = 0
   end
 
   private
 
-  def change_load(change)
-    @load += change
-  end
-
   def rehash!
-    vals = values
-    @coll = vals.map { |v| set(v) }
+    values.each { |v| set(v) }
+    @load = values.length
   end
 
   def add_slots
@@ -52,7 +47,8 @@ module EditMap
   end
 
   def resize
-    @resize_count += 1 if emptyish? || fullish?
+    return unless emptyish? || fullish?
+
     emptyish? && trim_slots || fullish? && add_slots
   end
 end

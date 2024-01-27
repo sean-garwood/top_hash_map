@@ -4,14 +4,13 @@
 class HashMap
   include EditMap
 
-  attr_accessor :coll, :resize_count
+  attr_accessor :coll
   attr_reader :capacity, :load
 
   def initialize(capacity = INIT_CAPACITY, coll = Array.new(capacity))
     @capacity = capacity
     @coll = coll
     @load = INIT_MEMBERS
-    @resize_count = 0
   end
 
   def to_s
@@ -26,8 +25,12 @@ class HashMap
   def hash(value)
     return unless value.is_a?(String)
 
-    key = value[0].ord
-    value.each_char { |char| key += PRIME * char.ord }
+    key = 0
+    pos = 1
+    value.each_char do |char|
+      key += PRIME * char.ord * pos
+      pos += 1
+    end
     key %= capacity
     key
   end
