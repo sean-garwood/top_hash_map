@@ -2,7 +2,6 @@
 
 # Obtain information about the map
 module MapInfo
-  MIN_LOAD = 0.25
   MAX_LOAD = 0.75
   INIT_CAPACITY = 16
   INIT_MEMBERS = 0
@@ -27,10 +26,6 @@ module MapInfo
   # key?(key) sounded dumb
   def empty_slot?(key)
     coll[key].nil?
-  end
-
-  def emptyish?
-    load.to_f / capacity <= MIN_LOAD && capacity != INIT_CAPACITY
   end
 
   def fullish?
