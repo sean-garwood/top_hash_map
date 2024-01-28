@@ -22,6 +22,12 @@ module MapInfo
     keys.reduce([]) { |vals, key| vals << @coll[key] }
   end
 
+  def entries
+    all_entries = []
+    coll.each_with_index { |k, v| all_entries << [k, v] }
+    all_entries
+  end
+
   private
 
   MAX_LOAD = 0.75
