@@ -6,7 +6,7 @@ module EditMap
   def set(value)
     @coll[hash(value)] = value
     resize
-    @load = keys.size
+    @load = length
     value
   end
 
