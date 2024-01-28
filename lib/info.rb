@@ -2,9 +2,6 @@
 
 # Obtain information about the map
 module MapInfo
-  MAX_LOAD = 0.75
-  INIT_CAPACITY = 16
-  INIT_MEMBERS = 0
   def get(value)
     key = hash(value)
 
@@ -13,8 +10,12 @@ module MapInfo
 
   def keys
     all_keys = []
-    coll.each_index { |k| all_keys << k unless @coll[k].nil? }
+    coll.each_index { |k| all_keys << k if key?(k) }
     all_keys
+  end
+
+  def length
+    keys.size
   end
 
   def values
@@ -23,12 +24,18 @@ module MapInfo
 
   private
 
-  # key?(key) sounded dumb
-  def empty_slot?(key)
-    coll[key].nil?
+  MAX_LOAD = 0.75
+  INIT_CAPACITY = 16
+  PRIME = 31
+  def key?(key)
+    !coll[key].nil?
   end
 
   def fullish?
     load.to_f / capacity >= MAX_LOAD
+  end
+
+  def to_s
+    "\ncapacity: #{capacity}\nload: #{load}\nkeys: #{length}\nvalues: #{values.size}\nresizes: #{resizes}"
   end
 end

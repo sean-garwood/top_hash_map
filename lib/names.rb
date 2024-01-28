@@ -8,6 +8,10 @@ class Names
     @names = make_names
   end
 
+  def to_s
+    "number of names: #{len}\nname len (chars): #{min_chars}-#{min_chars + 6}"
+  end
+
   private
 
   attr_reader :len, :min_chars
