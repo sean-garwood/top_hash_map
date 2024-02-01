@@ -1,16 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'lib/info'
-require_relative 'lib/edit'
-
 require_relative 'lib/hash_map'
-require_relative 'lib/names'
+require_relative 'lib/linked_list'
+require_relative 'lib/entries'
 
 foo = HashMap.new
-bar = Names.new(10, 3)
-bar.names.each { |name| foo.set(name) }
+bar = Entries.new(12_000_000)
+bar.entries.each_with_index { |key, value| foo.set(key, value) }
 
-puts "\nnames:\n\n#{bar}"
-puts "\nmap:\n#{foo}"
-
-puts foo.entries
+puts foo

@@ -1,6 +1,6 @@
-# top_hash_table
+# top_hash_map
 
-Ruby implementation of a hash table, built to the specification of The Odin
+Ruby implementation of a hash map, built to the specification of The Odin
 Project.
 
 ## Assignment
