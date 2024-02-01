@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative 'edit'
+require_relative 'info'
+
 # map strings to a key, which is index of an array of a determinate size
 class HashMap
   include EditMap
