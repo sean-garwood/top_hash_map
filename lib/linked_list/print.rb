@@ -3,7 +3,7 @@
 # print linked lists
 module PrintList
   def to_s
-    return '{ }' if empty?
+    return '{ }' if empty? || nil?
 
     print_linked_node = ->(key, value) { print "{ #{key}: #{value} } -> " }
     current_node = @head
