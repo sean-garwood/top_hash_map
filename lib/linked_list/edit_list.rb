@@ -4,14 +4,13 @@
 module EditList
   def append(key, value)
     node = Node.new(key, value)
-    if @size.zero?
+    if empty?
       @head = node
-    elsif @size == 1
+    elsif head == tail
       @head.next_node = node
     else
       @tail.next_node = node
     end
-    @size += 1
     @tail = node
   end
 

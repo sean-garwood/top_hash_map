@@ -25,13 +25,13 @@ module ListInfo
   end
 
   def empty?
-    size.zero?
+    head.nil?
   end
 
   private
 
   def collect(curr = head, nodes = [])
-    return if empty?
+    return nodes if empty?
 
     nodes << curr
     curr == tail ? nodes : collect(curr.next_node, nodes)

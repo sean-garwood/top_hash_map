@@ -10,7 +10,7 @@ class HashMap
   include EditMap
   include MapInfo
 
-  attr_accessor :slots, :keys, :values
+  attr_accessor :slots
 
   def initialize(capacity = INIT_CAPACITY)
     @capacity = capacity

@@ -11,18 +11,10 @@ class LinkedList
   include EditList
   include ListInfo
   include PrintList
-  attr_accessor :head, :tail, :size
-  attr_reader :keys, :values
+  attr_accessor :head, :tail
 
   def initialize(head = nil, tail = nil)
     @head = head
     @tail = tail
-    @size = 0
-    @keys = []
-    @values = []
   end
-
-  private
-
-  attr_writer :keys, :values
 end

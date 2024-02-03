@@ -6,10 +6,15 @@ module PrintMap
     slots.each { |slot| puts slot }
   end
 
+  def print_keys
+    keys.each { |key| puts key }
+  end
+
   def to_s
     print_slots
     "
-    \ncapacity: #{capacity}\nload: #{load}\nresizes: #{resizes}\n
+    \ncapacity: #{capacity}\nload: #{load}\nresizes: #{resizes}
+    \nkeys: #{keys}\nvalues: #{values}\nentries: #{entries}
     "
   end
 end
