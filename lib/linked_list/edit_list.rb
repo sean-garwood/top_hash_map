@@ -21,7 +21,7 @@ module EditList
     if head == del
       @head = del.next_node
     else
-      all.select { |n| n.next_node == del }[0].next_node = del.next_node
+      collect.select { |n| n.next_node == del }[0].next_node = del.next_node
     end
     del
   end

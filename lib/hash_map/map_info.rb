@@ -11,12 +11,18 @@ module MapInfo
   MIN_LOAD = 0.25
   MAX_LOAD = 0.75
   INIT_CAPACITY = 16
+  def collect(&attr)
+    return unless block_given?
+
+    occupied_slots.reduce([]) { |attrs, slot| attrs << attr.call(slot) }
+  end
+
   def entries
-    occupied_slots.reduce([]) { |entries, slot| entries << slot.entries }
+    collect(&:entries)
   end
 
   def keys
-    occupied_slots.reduce([]) { |keys, slot| keys << slot.keys }.flatten
+    collect(&:keys).flatten
   end
 
   def load_f
@@ -28,7 +34,7 @@ module MapInfo
   end
 
   def values
-    occupied_slots.reduce([]) { |values, slot| values << slot.values }.flatten
+    collect(&:values).flatten
   end
 
   def fullish?
