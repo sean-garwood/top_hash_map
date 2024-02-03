@@ -2,13 +2,15 @@
 
 require_relative 'linked_list/edit_list'
 require_relative 'linked_list/list_info'
+require_relative 'linked_list/print'
 
 require_relative 'linked_list/node'
 
 # Ruby impl of a linked list.
 class LinkedList
-  include ListInfo
   include EditList
+  include ListInfo
+  include PrintList
   attr_accessor :head, :tail, :size
   attr_reader :keys, :values
 

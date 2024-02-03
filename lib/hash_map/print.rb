@@ -2,16 +2,12 @@
 
 # print hash map
 module PrintMap
-  def print_lists
-    slots.reject(&:empty?).each { |list| puts list }
-  end
-
-  def print_entries
-    "\nentries: #{entries}"
+  def print_slots
+    slots.each { |slot| puts slot }
   end
 
   def to_s
-    print_lists
+    print_slots
     "
     \ncapacity: #{capacity}\nload: #{load}\nresizes: #{resizes}\n
     "
