@@ -23,7 +23,6 @@ module EditList
     else
       all.select { |n| n.next_node == del }[0].next_node = del.next_node
     end
-    @size -= 1
     del
   end
 end

@@ -8,10 +8,11 @@ module EditMap
   end
 
   def remove(key)
-    return unless key?(key)
+    slot = goto_slot(key)
+    return if slot.empty? || !key?(key)
 
     @load -= 1
-    goto_slot(key).delete(key).key
+    slot.delete(key).key
   end
 
   def clear!
