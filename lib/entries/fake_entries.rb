@@ -18,7 +18,7 @@ module FakeEntries
   end
 
   def make_entries
-    make_keys.each_with_index { |k, v| [k, v] }
+    make_keys.reduce([]) { |entries, k| entries << [k, rand(1..2**32 - 1)] }
   end
 
   def to_s

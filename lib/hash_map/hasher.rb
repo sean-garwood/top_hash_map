@@ -15,6 +15,7 @@ module Hasher
   end
 
   def rehash(num_slots)
+    @resizes += 1
     old_entries = entries.flatten(1)
     # reset slots
     @capacity = num_slots

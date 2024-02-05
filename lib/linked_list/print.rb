@@ -6,16 +6,19 @@ module PrintList
     "{ #{key}: #{value} } -> "
   end
 
-  def to_s
-    return '{ }' if empty? || nil?
+  def pretty_tail
+    "{ #{tail.key}: #{tail.value} }"
+  end
 
-    nodes = []
-    curr = head
-    while curr != tail
-      nodes << linked(curr.key, curr.value) unless curr.nil?
-      curr = curr.next_node
+  def to_s
+    print_linked_node = ->(key, value) { print "{ #{key}: #{value} } -> " }
+    current_node = @head
+    return '{ nil }' if current_node.nil?
+
+    while current_node != @tail
+      print_linked_node.call(current_node.key, current_node.value)
+      current_node = current_node.next_node
     end
-    tail.nil? ? nil : nodes << "{ #{tail.key}: #{tail.value} }"
-    nodes.join
+    "{ #{@tail.key}: #{@tail.value} }"
   end
 end

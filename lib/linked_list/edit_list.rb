@@ -15,14 +15,27 @@ module EditList
   end
 
   def delete(key)
-    return unless contains?(key)
+    return unless !empty? && contains?(key)
 
     del = find(key)
-    if head == del
-      @head = del.next_node
-    else
-      collect.select { |n| n.next_node == del }[0].next_node = del.next_node
-    end
+    reset_neighbor_attrs(del)
     del
+  end
+
+  private
+
+  def reset_neighbor_attrs(del)
+    if head == tail
+      @head = nil
+      @tail = nil
+    elsif del == head
+      @head = del.next_node
+    elsif del == tail
+      @tail = head
+      @head.next_node = nil
+    else
+      parent = collect.select { |n| n.next_node == del }[0]
+      parent.next_node = del.next_node
+    end
   end
 end

@@ -21,6 +21,10 @@ module MapInfo
     collect(&:entries)
   end
 
+  def length
+    entries.size
+  end
+
   def keys
     collect(&:keys).flatten
   end
