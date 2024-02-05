@@ -36,5 +36,4 @@ module ListInfo
     nodes << curr
     curr == tail ? nodes : collect(curr.next_node, nodes)
   end
-
 end

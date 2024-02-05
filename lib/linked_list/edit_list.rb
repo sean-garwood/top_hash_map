@@ -24,18 +24,28 @@ module EditList
 
   private
 
+  def clear_list
+    @head = nil
+    @tail = nil
+  end
+
+  def target_is_head
+    @head = del.next_node
+  end
+
+  def target_is_tail
+    @tail = head
+    @head.next_node = nil
+  end
+
   def reset_neighbor_attrs(del)
-    if head == tail
-      @head = nil
-      @tail = nil
-    elsif del == head
-      @head = del.next_node
-    elsif del == tail
-      @tail = head
-      @head.next_node = nil
-    else
-      parent = collect.select { |n| n.next_node == del }[0]
-      parent.next_node = del.next_node
-    end
+    return clear_list if head == tail
+
+    return target_is_head if del == head
+
+    return target_is_tail if del == tail
+
+    parent = collect.select { |n| n.next_node == del }[0]
+    parent.next_node = del.next_node
   end
 end
